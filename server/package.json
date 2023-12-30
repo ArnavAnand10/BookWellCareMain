@@ -15,7 +15,7 @@
     "postcss-flexbugs-fixes": "^5.0.2"
   },
   "scripts": {
-    "start": "npx nodemon server.js",
+    "start": "node server.js",
     "build" : "npm i"
   }
 }
