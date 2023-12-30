@@ -72,7 +72,7 @@ const FindDoctorPage = () => {
         try {
 
 
-            const url = `http://localhost:8080/fetchDoctorsData?category=${category}&location=${location}`
+            const url = `https://bookwellcare.onrender.com/fetchDoctorsData?category=${category}&location=${location}`
             const { data: { data } } = await axios.get(url);
            
             setFetchedData(data);
