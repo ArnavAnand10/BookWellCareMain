@@ -22,7 +22,7 @@ export const SaveReportsSection = () => {
         else {
             const getPdf = async () => {
                 try {
-                    const response = await axios.get(`${window.location.origin}/fetchReports?username=${username}`);
+                    const response = await axios.get(`https://bookwellcare.onrender.com/fetchReports?username=${username}`);
                     setFetchedFiles(response.data.files);
                   
                 }
@@ -58,7 +58,7 @@ export const SaveReportsSection = () => {
             else {
 
                 try {
-                    const response = await axios.post(`${window.location.origin}/uploadFiles`, formData, {
+                    const response = await axios.post(`https://bookwellcare.onrender.com/uploadFiles`, formData, {
                         headers: { "Content-Type": "multipart/form-data" }
                     })
 

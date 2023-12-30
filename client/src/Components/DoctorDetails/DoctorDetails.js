@@ -115,9 +115,9 @@ export const DoctorDetailsPage = () => {
         
 
 
-        const { data: { key } } = await axios.get(`${window.location.origin}/getKey`);
+        const { data: { key } } = await axios.get(`https://bookwellcare.onrender.com/getKey`);
 
-        const {data} = await axios.post(`${window.location.origin}/generatePayment`, {data:order}, config);
+        const {data} = await axios.post(`https://bookwellcare.onrender.com/generatePayment`, {data:order}, config);
         setIsLoading(false);
 
         const orderInstance = data.order;
@@ -144,7 +144,7 @@ export const DoctorDetailsPage = () => {
                 const razorpay_signature = (response.razorpay_signature)
 
                 try {
-                    const response = await axios.post(`${window.location.origin}/bookAppointment`, {
+                    const response = await axios.post(`https://bookwellcare.onrender.com/bookAppointment`, {
                         razorpay_order_id,
                         razorpay_payment_id,
                         razorpay_signature,

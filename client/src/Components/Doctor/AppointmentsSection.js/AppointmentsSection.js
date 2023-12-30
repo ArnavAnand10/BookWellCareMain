@@ -28,7 +28,7 @@ export const AppointmentsSection = () => {
         async function getTodayAppointments() {
             const date = new Date();
             try {
-                const { data: { msg: { appointedSlot } } } = await axios.get(`${window.location.origin}/getTodayAppointments?date=${todayDate}&email=${localStorage.getItem("email")}`)
+                const { data: { msg: { appointedSlot } } } = await axios.get(`https://bookwellcare.onrender.com/getTodayAppointments?date=${todayDate}&email=${localStorage.getItem("email")}`)
                 setTodayAppointments(appointedSlot)
             }
             catch (e) {

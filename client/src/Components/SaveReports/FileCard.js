@@ -20,7 +20,7 @@ export const SaveReportsCard = ({ props }) => {
                     "content-type":"application/json"
                 }
             }
-            const response = await axios.post(`${window.location.origin}/deleteFile`,{username:localStorage.getItem("username"), file:props.pdf}, config)
+            const response = await axios.post(`https://bookwellcare.onrender.com/deleteFile`,{username:localStorage.getItem("username"), file:props.pdf}, config)
             window.alert("Report Deleted Successfully")
             window.location.reload(); 
            

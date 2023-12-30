@@ -16,7 +16,7 @@ export const BookedAppointments = () => {
 
             try {
 
-                const response = await axios.get(`${window.location.origin}/bookedAppointments?username=${username}`);
+                const response = await axios.get(`https://bookwellcare.onrender.com//bookedAppointments?username=${username}`);
 
                 setBookedAppointments(response.data.appointments);
 

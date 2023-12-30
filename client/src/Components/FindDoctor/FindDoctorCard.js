@@ -26,7 +26,7 @@ export const FindDoctorCard = ({ props }) => {
 
         try{
 
-            const {data:{details}} = await axios.get(`${window.location.origin}/fetchDoctorDetails?name=${props.name}&phoneNumber=${props.phoneNumber}`)
+            const {data:{details}} = await axios.get(`https://bookwellcare.onrender.com/fetchDoctorDetails?name=${props.name}&phoneNumber=${props.phoneNumber}`)
           
             setLoading(false);
            

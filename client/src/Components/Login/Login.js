@@ -88,7 +88,7 @@ export const LoginSignup = () => {
                         }
                     }
 
-                    const response = await axios.post(`${window.location.origin}/login`, { data: loginData }, config);
+                    const response = await axios.post(`https://bookwellcare.onrender.com/login`, { data: loginData }, config);
                     console.log(response.data.username);
                     localStorage.setItem("username", response.data.username);
 
@@ -227,7 +227,7 @@ export const LoginSignup = () => {
                     }
                     try {
                         setIsLoading(true);
-                        const response = await axios.post(`${window.location.origin}/verifyData`, { data: signupData }, config);
+                        const response = await axios.post(`https://bookwellcare.onrender.com/verifyData`, { data: signupData }, config);
                         setRegisterData(signupData);
                         setShowOtpBox(true)
                         setActiveStep(1);
@@ -443,7 +443,7 @@ export const LoginSignup = () => {
                     }
                     const registerData = { ...data, phone: phone };
 
-                    const response = await axios.post(`${window.location.origin}/registerUser`,{registeredData:registerData},config);
+                    const response = await axios.post(`https://bookwellcare.onrender.com/registerUser`,{registeredData:registerData},config);
                     
                     setOtpLoading(false);
                     setShowLogin(true);
