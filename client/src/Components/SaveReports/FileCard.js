@@ -40,7 +40,7 @@ export const SaveReportsCard = ({ props }) => {
             disableElevation
             startIcon={<PictureAsPdfIcon />}
             onClick={() => {
-                window.open(`http://localhost:8080/files/${props.pdf}`)
+                window.open(`https://bookwellcare.onrender.com/${props.pdf}`)
 
             }}
             variant="contained">
