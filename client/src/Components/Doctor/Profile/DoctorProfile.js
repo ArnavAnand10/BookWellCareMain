@@ -112,7 +112,7 @@ export const DoctorProfile = () => {
                 const mail = localStorage.getItem("email")
 
                 try {
-                    const response = await axios.get(`${window.location.origin}/fetchDoctorDetailsForProfile?email=${mail}`)
+                    const response = await axios.get(`https://bookwellcare.onrender.com/fetchDoctorDetailsForProfile?email=${mail}`)
                     response.data.doctorData.name = response.data.doctorData.name.slice(4);
                     setDoctorDefaultData(response.data.doctorData);
 
@@ -514,7 +514,7 @@ export const DoctorProfile = () => {
                     }
                   
                     setIsLoading(true);
-                    const response = await axios.post(`${window.location.origin}/updateDoctorDetails`, {data}, config);
+                    const response = await axios.post(`https://bookwellcare.onrender.com/updateDoctorDetails`, {data}, config);
                    
                     setSnackBarMessage(response.data.msg);
                     setSnackBarType("success");
