@@ -1,6 +1,6 @@
 import Header from "../Header/Header"
 import '../../../src/App.css'
-import { Button } from "@mui/material"
+import { Button, CircularProgress, LinearProgress } from "@mui/material"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +11,8 @@ export const SaveReportsSection = () => {
 
     const navigate = useNavigate();
     const [fetchedFiles, setFetchedFiles] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isFileLoading, setIsFileLoading] = useState(false);
     const [title, setTitle] = useState();
     const [file, setFile] = useState();
     const username = localStorage.getItem("username");
@@ -20,13 +22,16 @@ export const SaveReportsSection = () => {
             navigate("/login")
         }
         else {
+            setIsFileLoading(true);
             const getPdf = async () => {
                 try {
                     const response = await axios.get(`https://bookwellcare.onrender.com/fetchReports?username=${username}`);
                     setFetchedFiles(response.data.files);
-                  
+                    setIsFileLoading(false);
+
                 }
                 catch (e) {
+                    setIsFileLoading(false);
                     console.log(e.response.data.msg);
                 }
             }
@@ -40,7 +45,7 @@ export const SaveReportsSection = () => {
 
 
         e.preventDefault();
-      
+
 
         if (title) {
             const formData = new FormData();
@@ -51,20 +56,22 @@ export const SaveReportsSection = () => {
             if (!file) {
                 window.alert("Pdf File is Requierd")
             }
-            else if(file.type != "application/pdf"){
+            else if (file.type != "application/pdf") {
                 window.alert("Upload Pdf Files Only")
             }
-            
-            else {
 
+            else {
+                setIsLoading(true);
                 try {
                     const response = await axios.post(`https://bookwellcare.onrender.com/uploadFiles`, formData, {
                         headers: { "Content-Type": "multipart/form-data" }
                     })
 
-                   
+                    setIsLoading(false);
+
                     window.location.reload();
                 } catch (e) {
+                    setIsLoading(false);
                     console.log(e);
                 }
             }
@@ -87,7 +94,7 @@ export const SaveReportsSection = () => {
 
                     <form style={{ textAlign: "center" }}>
 
-                        <input   className="text-lg my-8 p-4 border-2 w-full rounded-md"
+                        <input className="text-lg my-8 p-4 border-2 w-full rounded-md"
                             onChange={(e) => setTitle(e.target.value)}
                             type="text"
                             placeholder="Title of Medical Report"
@@ -98,7 +105,7 @@ export const SaveReportsSection = () => {
                         />
 
 
-                        <input  type="file"
+                        <input type="file"
                             onChange={(e) => { setFile(e.target.files[0]) }}
                         /> <br /> <br />
                         <Button type="submit"
@@ -110,7 +117,7 @@ export const SaveReportsSection = () => {
 
                         >
 
-                            Upload
+                            {isLoading ? <CircularProgress /> : "Upload"}
 
                         </Button>
 
@@ -121,14 +128,18 @@ export const SaveReportsSection = () => {
 
 
             <div className="grid  bg-white rounded-lg shadow-lg p-12 lg:grid-cols-4 grid-cols-1 md:grid-cols-2  gap-5 m-8">
-                {
-                    fetchedFiles.length!=0 ?
-                    
-                    fetchedFiles.map((file) => {
-                    return (<SaveReportsCard  key={Math.random()}  props={file} />)
-                }) : <h1 >No Reports Saved Yet !</h1>
-                
-                }
+
+            {isFileLoading ? <LinearProgress/> : 
+              
+                    fetchedFiles.length != 0 ?
+
+                        fetchedFiles.map((file) => {
+                            return (<SaveReportsCard key={Math.random()} props={file} />)
+                        }) : <h1 >No Reports Saved Yet !</h1>
+
+               
+
+            }
             </div>
         </>
 
