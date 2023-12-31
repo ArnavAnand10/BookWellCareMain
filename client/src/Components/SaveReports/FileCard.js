@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "../../../src/App.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
 export const SaveReportsCard = ({ props }) => {
     const [isDeleteLoading, setIsDeleteLoading] = useState(false)
