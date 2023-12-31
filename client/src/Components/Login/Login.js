@@ -82,6 +82,8 @@ export const LoginSignup = () => {
 
               
                 try {
+
+                    setIsLoading(true);
                     const config = {
                         headers: {
                             "content-type": "application/json"
@@ -91,11 +93,13 @@ export const LoginSignup = () => {
                     const response = await axios.post(`https://bookwellcare.onrender.com/login`, { data: loginData }, config);
                     console.log(response.data.username);
                     localStorage.setItem("username", response.data.username);
+                    setIsLoading(false);
 
                     navigate("/home");
                 }
 
                 catch (e) {
+                    setIsLoading(false);
                     setSnackBarMessage(e.response.data.msg);
                     setSnackBarType("error")
                     setSnackBarVisibility(true)
