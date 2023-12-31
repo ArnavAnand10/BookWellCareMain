@@ -118,7 +118,7 @@ export const DoctorDetailsPage = () => {
         const { data: { key } } = await axios.get(`https://bookwellcare.onrender.com/getKey`);
 
         const {data} = await axios.post(`https://bookwellcare.onrender.com/generatePayment`, {data:order}, config);
-        setIsLoading(false);
+       
 
         const orderInstance = data.order;
 
@@ -151,7 +151,7 @@ export const DoctorDetailsPage = () => {
                         data:patientData,
                         
                     }, config)
-
+                    setIsLoading(false);
                     setOpen(false);
                     setIsLoading(false);
                     setSnackBarMessage(response.data.msg);
@@ -195,6 +195,7 @@ export const DoctorDetailsPage = () => {
 
        }
         catch (e) {
+            setIsLoading(false);
             console.log(`error ${e}`);
             setIsLoading(false)
             setSnackBarMessage(e.response.data.msg);
