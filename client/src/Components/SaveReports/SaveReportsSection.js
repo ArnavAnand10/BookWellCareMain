@@ -68,7 +68,7 @@ export const SaveReportsSection = () => {
                     })
 
                     setIsLoading(false);
-
+                    window.alert("Report Saved Successfully")
                     window.location.reload();
                 } catch (e) {
                     setIsLoading(false);
