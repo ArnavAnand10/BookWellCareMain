@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+import { Button, CircularProgress } from "@mui/material"
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "../../../src/App.css"
@@ -6,25 +6,28 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"
 
 export const SaveReportsCard = ({ props }) => {
+    const [isDeleteLoading, setIsDeleteLoading] = useState(false)
 
-
-    const navigate= useNavigate();
-    const myArray = ['blue', 'red', 'green', 'yellow'];
+    
 
 
     const deleteFile = async () => {
+     
 
         try {
+            setIsDeleteLoading(true);
             const config = {
                 headers:{
                     "content-type":"application/json"
                 }
             }
             const response = await axios.post(`https://bookwellcare.onrender.com/deleteFile`,{username:localStorage.getItem("username"), file:props.pdf}, config)
+            setIsDeleteLoading(false);
             window.alert("Report Deleted Successfully")
             window.location.reload(); 
            
         }catch(e){
+            setIsDeleteLoading(false);
             window.alert("Error Deleting Report")
             console.log(e);
         }
@@ -52,7 +55,7 @@ export const SaveReportsCard = ({ props }) => {
             startIcon={<DeleteIcon />}
             onClick={deleteFile}
             variant="outlined">
-            Delete  </Button>
+         { isDeleteLoading ? <CircularProgress color="inherit"/> :  "Delete" } </Button>
 
 
 

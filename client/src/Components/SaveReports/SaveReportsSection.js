@@ -12,6 +12,7 @@ export const SaveReportsSection = () => {
     const navigate = useNavigate();
     const [fetchedFiles, setFetchedFiles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+   
     const [isFileLoading, setIsFileLoading] = useState(false);
     const [title, setTitle] = useState();
     const [file, setFile] = useState();
@@ -129,17 +130,17 @@ export const SaveReportsSection = () => {
 
             <div className="grid  bg-white rounded-lg shadow-lg p-12 lg:grid-cols-4 grid-cols-1 md:grid-cols-2  gap-5 m-8">
 
-            {isFileLoading ? <LinearProgress/> : 
-              
+                {isFileLoading ? <LinearProgress /> :
+
                     fetchedFiles.length != 0 ?
 
                         fetchedFiles.map((file) => {
                             return (<SaveReportsCard key={Math.random()} props={file} />)
                         }) : <h1 >No Reports Saved Yet !</h1>
 
-               
 
-            }
+
+                }
             </div>
         </>
 
