@@ -117,7 +117,7 @@ export const SaveReportsSection = () => {
 
                         >
 
-                            {isLoading ? <CircularProgress /> : "Upload"}
+                            {isLoading ? <CircularProgress color="inherit" /> : "Upload"}
 
                         </Button>
 
